@@ -1,11 +1,10 @@
-import 'dart:js';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shop_app/widgets/app_drawer.dart';
+import '../widgets/app_drawer.dart';
 import '../providers/products.dart';
 import '../widgets/user_product_item.dart';
-import '../screens/edit_product_screen.dart';
+import './edit_product_screen.dart';
 
 class UserProductsScreen extends StatelessWidget {
   static const routeName = '/user-products';
@@ -33,20 +32,20 @@ class UserProductsScreen extends StatelessWidget {
       body: RefreshIndicator(
         onRefresh: () => _refreshProducts(context),
         child: Padding(
-            padding: EdgeInsets.all(8),
-            child: ListView.builder(
-              itemCount: productsData.items.length,
-              itemBuilder: (_, i) => Column(
-                children: <Widget>[
-                  UserProductItem(
-                    productsData.items[i].id,
-                    productsData.items[i].title,
-                    productsData.items[i].imageUrl,
-                  ),
-                  Divider()
-                ],
-              ),
-            )),
+          padding: EdgeInsets.all(8),
+          child: ListView.builder(
+            itemCount: productsData.items.length,
+            itemBuilder: (_, i) => Column(
+                  children: [
+                    UserProductItem(
+                      productsData.items[i].id,
+                      productsData.items[i].title,
+                      productsData.items[i].imageUrl,
+                    ),
+                    Divider()
+                  ],
+                ),
+          )),
       ),
     );
   }
